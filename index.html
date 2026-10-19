@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Date Tracker</title>
+</head>
+
+<body>
+    <header>
+        <h1>Grocery Date Tracker</h1>
+        <p>Know what you have, use what you can, and waste less!</p>
+    </header>
+
+    <main>
+        <section id="add-grocery">
+            <h2>Add to My Groceries</h2>
+            <p>Have something new in the fridge, freezer, or pantry? Add it here!</p>
+
+            <form id="grocery-form">
+                <div>
+                    <label for="grocery-name">Grocery Item</label>
+                    <input type="text" id="grocery-name"
+                           placeholder="e.g. Orange juice, Steak, Produce" required>
+                </div>
+
+                <div>
+                    <label for="grocery-date">Expiration Date</label>
+                    <input type="date" id="grocery-date" required>
+                </div>
+
+                <div>
+                    <label for="grocery-category">Stored In</label>
+                    <select id="grocery-category">
+                        <option value="fridge">Fridge</option>
+                        <option value="freezer">Freezer</option>
+                        <option value="pantry">Pantry</option>
+                    </select>
+                </div>
+
+                <button type="submit">Add to List</button>
+            </form>
+        </section>
+
+        <section id="my-groceries">
+            <h2>What's in My Kitchen?</h2>
+            <p>All your inputted groceries will show up here.</p>
+
+            <ul id="grocery-list"></ul>
+        </section>
+
+        <section id="expiring-soon">
+            <h2>Use These Soon!</h2>
+            <p>Groceries that are close to expiring will appear here.</p>
+
+            <ul id="expiring-list"></ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>Grocery Date Tracker ~ Making the most of what's already at home :)</p>
+    </footer>
+</body>
+</html>
