@@ -1,0 +1,104 @@
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #f6f0e4;
+    color: #465544;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #dce5d5;
+    text-align: center;
+    padding: 35px 20px;
+}
+
+header h1 {
+    color: #465544;
+    margin-bottom: 8px;
+    font-size: 32px;
+}
+
+header p {
+    margin: 0;
+    color: #667461;
+}
+
+main {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+section {
+    background-color: #fffdf8;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    border: 1px solid #e7e1d4;
+}
+
+h2 {
+    color: #6b8665;
+    margin-top: 0;
+    font-size: 22px;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d8d5c8;
+    border-radius: 8px;
+    background-color: #fffdf8;
+    font-family: inherit;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+input:focus, select:focus {
+    outline: 2px solid #a9bea1;
+    border-color: #82977b;
+}
+
+button {
+    background-color: #82977b;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #6b8665;
+}
+
+/* grocery list */
+ul {
+    padding-left: 20px;
+}
+
+li {
+    background-color: #f7e8ac;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #788071;
+    font-size: 13px;
+}
