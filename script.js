@@ -18,6 +18,7 @@ function addGroceryItem(event) {
 
     displayGroceries(grocery);
     updateChart();
+    checkExpiringItems();
 
     document.getElementById("grocery-form").reset();
 }
@@ -36,7 +37,26 @@ function displayGroceries(grocery) {
 
 //check which groceries are expiring soon
 function checkExpiringItems() {
-    console.log("Checks expiring items function");
+    let expiringList = document.getElementById("expiring-list");
+
+    expiringList.innerHTML = "";
+
+    groceries.forEach(function(grocery) {
+        let daysLeft = daysUntilExpiration(grocery.expirationDate);
+        if (daysLeft >= 0 && daysLeft <= 3) {
+            let item = document.createElement("li");
+
+            if (daysLeft === 0) {
+                item.textContent = grocery.name + " | Expires today! Use immediately";
+            } else if (daysLeft === 1) {
+                item.textContent = grocery.name + " | Expires tomorrow!";
+            } else {
+                item.textContent = grocery.name + " | " + daysLeft + " days left";
+            }
+
+            expiringList.appendChild(item);
+        }
+    });
 }
 
 //save grocery items to localStorage
@@ -125,3 +145,4 @@ function updateChart() {
 
 loadGroceries();
 updateChart();
+checkExpiringItems();
