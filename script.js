@@ -1,12 +1,30 @@
 //add a new grocery item
-function addGroceryItem() {
-    //collect the item name, expiration date, and category
-    console.log("Adds grocery item function");
+function addGroceryItem(event) {
+    event.preventDefault();
+    let name = document.getElementById("grocery-name").value;
+    let date = document.getElementById("grocery-date").value;
+    let category = document.getElementById("grocery-category").value;
+
+    let grocery = {
+        name: name,
+        expirationDate: date,
+        category: category
+    };
+    displayGroceries(grocery);
+
+    document.getElementById("grocery-form").reset();
 }
 
 //display saved grocery items
-function displayGroceries() {
-    console.log("Displays groceries function");
+function displayGroceries(grocery) {
+    let groceryList = document.getElementById("grocery-list");
+    let item = document.createElement("li");
+
+    item.textContent = grocery.name + " | " +
+                       grocery.expirationDate + " | " +
+                       grocery.category;
+
+    groceryList.appendChild(item);
 }
 
 //check which groceries are expiring soon
@@ -51,3 +69,5 @@ localStorage.setItem("grocery", JSON.stringify(grocery));
 let savedGrocery = JSON.parse(localStorage.getItem("grocery"));
 
 console.log("Saved grocery:", savedGrocery);
+
+document.getElementById("grocery-form").addEventListener("submit", addGroceryItem);
