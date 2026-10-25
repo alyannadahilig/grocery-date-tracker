@@ -17,6 +17,7 @@ function addGroceryItem(event) {
     saveGroceries();
 
     displayGroceries(grocery);
+    updateChart();
 
     document.getElementById("grocery-form").reset();
 }
@@ -88,4 +89,39 @@ let savedGrocery = JSON.parse(localStorage.getItem("grocery"));
 console.log("Saved grocery:", savedGrocery);
 
 document.getElementById("grocery-form").addEventListener("submit", addGroceryItem);
+
+let groceryChart;
+
+function updateChart() {
+    let fridge = groceries.filter(item => item.category === "fridge").length;
+    let freezer = groceries.filter(item => item.category === "freezer").length;
+    let pantry = groceries.filter(item => item.category === "pantry").length;
+
+    if (groceryChart) {
+        groceryChart.destroy();
+    }
+
+    let chart = document.getElementById("grocery-chart");
+
+    groceryChart = new Chart(chart, {
+        type: "doughnut",
+        data: {
+            labels: ["Fridge", "Freezer", "Pantry"],
+            datasets: [{
+                data: [fridge, freezer, pantry],
+                backgroundColor: ["#82977B", "#F7E8AC", "#C7AE91"]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: "bottom"
+                }
+            }
+        }
+    });
+}
+
 loadGroceries();
+updateChart();

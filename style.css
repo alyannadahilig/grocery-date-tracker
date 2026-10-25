@@ -102,3 +102,9 @@ footer {
     color: #788071;
     font-size: 13px;
 }
+
+/*grocery overview chart*/
+.chart-container {
+    max-width: 300px;
+    margin: 0 auto;
+}
