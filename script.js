@@ -16,22 +16,52 @@ function addGroceryItem(event) {
     groceries.push(grocery);
     saveGroceries();
 
-    displayGroceries(grocery);
-    updateChart();
+    refreshGroceries();
     checkExpiringItems();
+    updateChart();
 
     document.getElementById("grocery-form").reset();
 }
 
 //display saved grocery items
-function displayGroceries(grocery) {
+function displayGroceries(grocery, index) {
     let groceryList = document.getElementById(grocery.category + "-list");
     let item = document.createElement("li");
 
-    item.textContent = grocery.name + " | " +
-                       grocery.expirationDate;
+    let groceryText = document.createElement("span");
+    groceryText.textContent = grocery.name + " | " + grocery.expirationDate;
+
+    let removeButton = document.createElement("button");
+    removeButton.textContent = "Remove";
+    removeButton.type = "button";
+    removeButton.classList.add("remove-button");
+
+    removeButton.addEventListener("click", function() {
+        removeGrocery(index);
+    });
+
+    item.appendChild(groceryText);
+    item.appendChild(removeButton);
 
     groceryList.appendChild(item);
+}
+
+function removeGrocery(index) {
+    groceries.splice(index, 1);
+    saveGroceries();
+    refreshGroceries();
+    checkExpiringItems();
+    updateChart();
+}
+
+function refreshGroceries() {
+    document.getElementById("fridge-list").innerHTML = "";
+    document.getElementById("freezer-list").innerHTML = "";
+    document.getElementById("pantry-list").innerHTML = "";
+
+    groceries.forEach(function(grocery, index) {
+        displayGroceries(grocery, index);
+    });
 }
 
 //check which groceries are expiring soon
@@ -68,9 +98,7 @@ function loadGroceries() {
     if (savedGroceries) {
         groceries = JSON.parse(savedGroceries);
 
-        groceries.forEach(function(grocery) {
-            displayGroceries(grocery);
-        });
+        refreshGroceries();
     }
 }
 
