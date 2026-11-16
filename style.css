@@ -122,3 +122,23 @@ footer {
     font-size: 12px;
     margin-left: 10px;
 }
+
+/*display both charts side by side */
+.charts-row {
+    display: flex;
+    gap: 20px;
+}
+
+/*give both chart sections equal space between e/o */
+.charts-row section {
+    flex: 1;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/*stack charts on smaller screens*/
+@media (max-width: 600px) {
+    .charts-row {
+        flex-direction: column;
+    }
+}

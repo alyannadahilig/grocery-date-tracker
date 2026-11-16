@@ -100,6 +100,7 @@ function markGrocery(index, status) {
     refreshGroceries();
     checkExpiringItems();
     updateChart();
+    updateWasteChart();
 }
 
 function refreshGroceries() {
@@ -158,9 +159,9 @@ function loadGroceries() {
     let savedGroceries = localStorage.getItem("groceries");
     if (savedGroceries) {
         groceries = JSON.parse(savedGroceries);
-
-        refreshGroceries();
     }
+
+    refreshGroceries();
 }
 
 console.log("Grocery Date Tracker is up and running! :0");
@@ -181,6 +182,7 @@ function daysUntilExpiration(date) {
 document.getElementById("grocery-form").addEventListener("submit", addGroceryItem);
 
 let groceryChart;
+let wasteChart;
 
 function updateChart() {
 
@@ -219,7 +221,43 @@ function updateChart() {
     });
 }
 
+ //update food waste chart
+ function updateWasteChart() {
+    if (typeof Chart === "undefined") {
+        console.error("Chart.js failed to load and chart is unavailable.");
+        return;
+    }
+    let used = groceryHistory.filter(item => item.status === "used").length;
+    let wasted = groceryHistory.filter(item => item.status === "wasted").length;
+
+    if (wasteChart) {
+        wasteChart.destroy();
+    }
+
+    let chart = document.getElementById("waste-chart");
+    wasteChart = new Chart(chart, {
+        type: "doughnut",
+        data: {
+            labels: ["Used", "Wasted"],
+            datasets: [{
+                data: [used, wasted],
+                backgroundColor: ["#82977B", "#C7AE91"]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: "bottom"
+                }
+            }
+        }
+    });
+}
+
+
 loadGroceries();
 loadGroceryHistory();
 checkExpiringItems();
 updateChart();
+updateWasteChart();
