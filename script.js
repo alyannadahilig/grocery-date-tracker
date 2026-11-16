@@ -25,12 +25,11 @@ function addGroceryItem(event) {
 
 //display saved grocery items
 function displayGroceries(grocery) {
-    let groceryList = document.getElementById("grocery-list");
+    let groceryList = document.getElementById(grocery.category + "-list");
     let item = document.createElement("li");
 
     item.textContent = grocery.name + " | " +
-                       grocery.expirationDate + " | " +
-                       grocery.category;
+                       grocery.expirationDate;
 
     groceryList.appendChild(item);
 }
