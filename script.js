@@ -90,29 +90,19 @@ function daysUntilExpiration(date) {
     return daysLeft;
 }
 
-//example expiration dates
-console.log("Milk:", daysUntilExpiration("2026-10-21"));
-console.log("Eggs:", daysUntilExpiration("2026-10-22"));
-console.log("Cereal:", daysUntilExpiration("2026-12-16"));
 
-//test for saving a grocery item
-let grocery = {
-    name: "Milk",
-    expirationDate: "2026-10-21",
-    category: "fridge"
-};
-
-localStorage.setItem("grocery", JSON.stringify(grocery));
-
-let savedGrocery = JSON.parse(localStorage.getItem("grocery"));
-
-console.log("Saved grocery:", savedGrocery);
 
 document.getElementById("grocery-form").addEventListener("submit", addGroceryItem);
 
 let groceryChart;
 
 function updateChart() {
+
+    if (typeof Chart === "undefined") {
+        console.error("Chart.js failed to load and chart is unavailable.");
+        return;
+    }
+
     let fridge = groceries.filter(item => item.category === "fridge").length;
     let freezer = groceries.filter(item => item.category === "freezer").length;
     let pantry = groceries.filter(item => item.category === "pantry").length;
@@ -144,5 +134,5 @@ function updateChart() {
 }
 
 loadGroceries();
-updateChart();
 checkExpiringItems();
+updateChart();
