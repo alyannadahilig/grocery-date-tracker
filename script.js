@@ -1,4 +1,5 @@
 let groceries = [];
+let groceryHistory = [];
 
 //add a new grocery item
 function addGroceryItem(event) {
@@ -6,6 +7,11 @@ function addGroceryItem(event) {
     let name = document.getElementById("grocery-name").value;
     let date = document.getElementById("grocery-date").value;
     let category = document.getElementById("grocery-category").value;
+
+    if (name.trim() === "" || date === "" || category === "") {
+        alert("Please fill out all fields.");
+        return;
+    }
 
     let grocery = {
         name: name,
@@ -31,6 +37,27 @@ function displayGroceries(grocery, index) {
     let groceryText = document.createElement("span");
     groceryText.textContent = grocery.name + " | " + grocery.expirationDate;
 
+    //used button:
+    let usedButton = document.createElement("button");
+    usedButton.textContent = "Used";
+    usedButton.type = "button";
+    usedButton.classList.add("action-button");
+
+    usedButton.addEventListener("click", function() {
+        markGrocery(index, "used");
+    });
+
+    //wasted button:
+    let wastedButton = document.createElement("button");
+    wastedButton.textContent = "Wasted";
+    wastedButton.type = "button";
+    wastedButton.classList.add("action-button");
+
+    wastedButton.addEventListener("click", function() {
+        markGrocery(index, "wasted");
+    });
+
+    //remove button:
     let removeButton = document.createElement("button");
     removeButton.textContent = "Remove";
     removeButton.type = "button";
@@ -41,6 +68,8 @@ function displayGroceries(grocery, index) {
     });
 
     item.appendChild(groceryText);
+    item.appendChild(usedButton);
+    item.appendChild(wastedButton);
     item.appendChild(removeButton);
 
     groceryList.appendChild(item);
@@ -49,6 +78,25 @@ function displayGroceries(grocery, index) {
 function removeGrocery(index) {
     groceries.splice(index, 1);
     saveGroceries();
+    refreshGroceries();
+    checkExpiringItems();
+    updateChart();
+}
+
+function markGrocery(index, status) {
+    let grocery = groceries[index];
+
+    groceryHistory.push({
+        name: grocery.name,
+        expirationDate: grocery.expirationDate,
+        category: grocery.category,
+        status: status
+    });
+
+    groceries.splice(index, 1);
+
+    saveGroceries();
+    saveGroceryHistory();
     refreshGroceries();
     checkExpiringItems();
     updateChart();
@@ -93,6 +141,19 @@ function saveGroceries() {
     localStorage.setItem("groceries", JSON.stringify(groceries));
 }
 
+//save used and wasted grocery history
+function saveGroceryHistory() {
+    localStorage.setItem("groceryHistory", JSON.stringify(groceryHistory));
+}
+
+function loadGroceryHistory() {
+    let savedHistory = localStorage.getItem("groceryHistory");
+
+    if (savedHistory) {
+        groceryHistory = JSON.parse(savedHistory);
+    }
+}
+
 function loadGroceries() {
     let savedGroceries = localStorage.getItem("groceries");
     if (savedGroceries) {
@@ -104,7 +165,7 @@ function loadGroceries() {
 
 console.log("Grocery Date Tracker is up and running! :0");
 
-//tests for calculating expiration dates
+//calculate how many days are left until a grocery expires
 function daysUntilExpiration(date) {
     let today = new Date();
     let expirationDate = new Date(date + "T00:00:00");
@@ -116,8 +177,6 @@ function daysUntilExpiration(date) {
 
     return daysLeft;
 }
-
-
 
 document.getElementById("grocery-form").addEventListener("submit", addGroceryItem);
 
@@ -161,5 +220,6 @@ function updateChart() {
 }
 
 loadGroceries();
+loadGroceryHistory();
 checkExpiringItems();
 updateChart();

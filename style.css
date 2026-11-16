@@ -115,3 +115,10 @@ footer {
     font-size: 12px;
     margin-left: 10px;
 }
+
+/*used and wasted buttons*/
+.action-button {
+    padding: 5px 10px;
+    font-size: 12px;
+    margin-left: 10px;
+}
