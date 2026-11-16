@@ -108,3 +108,10 @@ footer {
     max-width: 300px;
     margin: 0 auto;
 }
+
+/*smaller remove button */
+.remove-button {
+    padding: 5px 10px;
+    font-size: 12px;
+    margin-left: 10px;
+}
