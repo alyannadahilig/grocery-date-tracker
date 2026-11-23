@@ -55,15 +55,20 @@ The grocery list, Use These Soon! section, and Grocery Overview chart will updat
 
 Grocery items and their Used/Wasted history are saved using localStorage, so the information will remain available after refreshing the webpage in the same browser.
 
-## How It Works
+## Quickstart
 
-When a user adds a grocery item, JavaScript saves its name, expiration date, and storage category in an array. The application then displays the grocery under its corresponding Fridge, Freezer, or Pantry section.
+1. Clone the repository:
 
-The application also calculates how many days are left before each grocery expires. If an item is expiring within the next 3 days, it will appear in the "Use These Soon!" section.
+   ```bash
+   git clone https://github.com/alyannadahilig/grocery-date-tracker.git
+   ```
 
-When a grocery is marked as Used or Wasted, it is removed from the active grocery list and added to a separate grocery history array. The Food Waste Overview chart uses this history to show how many grocery items have been used versus wasted.
+2. Open the `grocery-date-tracker` folder in VS Code.
+3. Open `index.html` in your browser to run the application.
 
-Both arrays are saved separately using localStorage, allowing the application to keep track of active groceries and their history without needing a database.
+No additional installation is required. An internet connection is needed to load Chart.js for the charts.
+
+**Live Demo:** https://alyannadahilig.github.io/grocery-date-tracker/
 
 ## Sample Data
 
