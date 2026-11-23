@@ -58,6 +58,26 @@ No additional installation is required. An internet connection is needed to load
 
 **Live Demo:** https://alyannadahilig.github.io/grocery-date-tracker/
 
+## How It Works
+
+I used HTML and CSS to create the webpage and JavaScript to handle the main functions, such as adding groceries, checking expiration dates, and updating the lists and charts.
+
+When a user adds a grocery, the information is saved in localStorage so it doesn't disappear when the page is refreshed. If a grocery is marked as Used or Wasted, it gets removed from the current list and saved in a separate history. The application also uses Chart.js to show how many groceries are in each storage location and how many have been used or wasted.
+
+### Architecture Sketch
+
+```mermaid
+flowchart TD
+    A["User Interface (HTML & CSS)"]
+    B["JavaScript (script.js)"]
+    C["localStorage (Groceries & History)"]
+    D["Chart.js (Overview Charts)"]
+
+    A --> B
+    B <--> C
+    B --> D
+```
+
 ## Sample Data
 
 The `sample-data.json` file contains four example grocery items: Tomato, Sourdough Bread, Caesar Salad, and Frozen Gyoza.
@@ -74,6 +94,17 @@ Additional features were added, including Used, Wasted, and Remove buttons, alon
 
 The application now has a more complete demo path, allowing users to add groceries, manage their grocery lists, and track how many items were used versus wasted.
 
-## Future Improvements
+## Known Limitations
 
-In future sprints, I would like to add user accounts and a database so grocery information can be accessed across multiple devices. I would also like to improve the Food Waste Overview by adding more detailed statistics, such as tracking food waste over time.
+1. **Browser Storage:** The application uses localStorage, so saved groceries can only be accessed through the same browser and device. The information can also be lost if the browser's site data is cleared.
+
+2. **No Editing Feature:** Once a grocery has been added, users cannot change its name, expiration date, or storage location. They would have to remove the item and add it again with the correct information.
+
+3. **Basic Food Waste Tracking:** The Food Waste Overview currently only shows the total number of groceries marked as Used or Wasted. It doesn't show how food waste changes over time or provide more detailed statistics.
+
+## Author
+
+**Alyanna Dahilig**
+
+GitHub: https://github.com/alyannadahilig
+email: s-alyanna.dahilig@lwtech.edu
