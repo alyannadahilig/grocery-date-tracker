@@ -2,6 +2,10 @@
 
 This project is a simple web application that helps users keep track of their groceries and expiration dates. The goal is to make it easier to see what groceries are still available at home and which ones should be used soon to help reduce food waste.
 
+## Demo Screenshot
+
+![Grocery Expiration Date Tracker Screenshot](screenshots/demo.png)
+
 ## Demo Path
 
 1. Enter a grocery item's name, expiration date, and storage category (Fridge, Freezer, or Pantry).
