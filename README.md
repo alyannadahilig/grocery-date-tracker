@@ -43,18 +43,6 @@ This project is a simple web application that helps users keep track of their gr
 
 I chose to use HTML, CSS, and JavaScript to keep the project simple and manageable while still being able to build the features I have planned. Using localStorage also allows me to save grocery information without needing to set up a separate database.
 
-## How to Run
-
-1. Download or clone the repository.
-2. Open the project folder in VS Code.
-3. Open `index.html` in a web browser with an internet connection to load Chart.js.
-4. Enter a grocery item's name, expiration date, and storage category.
-5. Click "Add to List" to save the grocery and display it on the webpage.
-
-The grocery list, Use These Soon! section, and Grocery Overview chart will update automatically as new groceries are added. Users can also mark groceries as Used or Wasted, which will update the Food Waste Overview chart.
-
-Grocery items and their Used/Wasted history are saved using localStorage, so the information will remain available after refreshing the webpage in the same browser.
-
 ## Quickstart
 
 1. Clone the repository:
