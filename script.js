@@ -212,7 +212,6 @@ function updateChart() {
         },
         options: {
             responsive: true,
-            animation: false,
             plugins: {
                 legend: {
                     position: "bottom"
@@ -247,7 +246,6 @@ function updateChart() {
         },
         options: {
             responsive: true,
-            animation: false,
             plugins: {
                 legend: {
                     position: "bottom"
